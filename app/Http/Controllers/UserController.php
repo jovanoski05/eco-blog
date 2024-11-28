@@ -53,6 +53,8 @@ class UserController extends Controller
             'password' => ['required', 'min:8', 'max:64', 'confirmed']
         ]);
 
+        $attributes['role'] = 0;
+
         try {
             $user = User::create($attributes);
         } catch (\Exception $e) {
