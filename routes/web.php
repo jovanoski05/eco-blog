@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('index');
@@ -15,6 +16,12 @@ Route::get("/about", function(){
 Route::get("/posts", [PostController::class, 'index']);
 
 Route::get("/posts/{id}", [PostController::class, 'show']);
+
+Route::get("/register", [UserController::class, 'register']);
+
+Route::post("/register", [UserController::class, 'store']);
+
+Route::post('/logout', [UserController::class, 'destroy'])->middleware('auth');
 
 
 #API
