@@ -19,12 +19,29 @@ class UserController extends Controller
 
     public function login()
     {
-        return dd("Login page");
+        return view("user.login");
     }
 
     public function create()
     {
-        return dd("Login user");
+
+        $attributes = request()->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required']
+        ]);
+
+        if (! Auth::attempt($attributes))
+        {
+            throw ValidationException::withMessages([
+                'email' => 'No matching user found'
+            ]);
+        }
+
+        request()->session()->regenerate();
+
+        Auth::login(Auth::user());
+
+        return redirect('/');
     }
 
     public function store()

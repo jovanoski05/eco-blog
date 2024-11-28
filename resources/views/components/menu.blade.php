@@ -5,7 +5,7 @@
 
     @guest
         <li><a href="/register">Register</a></li>
-        <li><a href="#">Log In</a></li>
+        <li><a href="/login">Log In</a></li>
     @endguest
 
     @auth

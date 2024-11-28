@@ -21,6 +21,10 @@ Route::get("/register", [UserController::class, 'register']);
 
 Route::post("/register", [UserController::class, 'store']);
 
+Route::get('/login', [UserController::class, 'login']);
+
+Route::post('/login', [UserController::class, 'create']);
+
 Route::post('/logout', [UserController::class, 'destroy'])->middleware('auth');
 
 
