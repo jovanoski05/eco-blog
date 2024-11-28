@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+use App\Models\Post;
+use App\Models\User;
+
 class PostController extends Controller
 {
     //
@@ -11,20 +15,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = [
-            0 => [
-                'id' => 0,
-                'title' => "Sample Post",
-                'description' => "Some description",
-                "text" => 'This is a simple post with full description and so on and so on'
-            ],
-            1 => [
-                'id' => 1,
-                'title' => "Sample Post",
-                'description' => "Some description",
-                "text" => 'This is a simple post with full description and so on and so on'
-            ]
-        ];
+        $posts = Post::with(['author'])->paginate();
 
         return view("posts.index", ['posts' => $posts]);
     }
@@ -32,13 +23,42 @@ class PostController extends Controller
     public function show()
     {
 
-        $post = [
-            'id' => 0,
-            'title' => "Sample Post",
-            'description' => "Some description",
-            "text" => 'This is a simple post with full description and so on and so on'
-        ];
+        $post = Post::with('author')->findOrFail(request('id'));
 
         return view("posts.show", ['post' => $post]);
+    }
+
+    public function create()
+    {
+
+
+        if (! Auth::user() || Auth::user()->role == 0)
+        {
+            return redirect('/');
+        }
+
+
+        return view('posts.create');
+    }
+
+    public function store()
+    {
+
+
+        if (! Auth::user() || Auth::user()->role == 0)
+        {
+            return redirect('/');
+        }
+
+        $attributes = request()->validate([
+            'title' => ['required', 'max:255'],
+            'description' => ['required'],
+            'text' => ['required']
+        ]);
+
+        $attributes['user_id'] = Auth::user()['id'];
+
+        Post::create($attributes);
+        return redirect('/');
     }
 }

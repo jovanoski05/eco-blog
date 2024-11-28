@@ -14,16 +14,28 @@ class UserController extends Controller
 
     public function register()
     {
+        if (Auth::user())
+        {
+            return redirect('/');
+        }
         return view("user.register");
     }
 
     public function login()
     {
+        if (Auth::user())
+        {
+            return redirect('/');
+        }
         return view("user.login");
     }
 
     public function create()
     {
+        if (Auth::user())
+        {
+            return redirect('/');
+        }
 
         $attributes = request()->validate([
             'email' => ['required', 'email'],
@@ -46,6 +58,11 @@ class UserController extends Controller
 
     public function store()
     {
+
+        if (Auth::user())
+        {
+            return redirect('/');
+        }
 
         $attributes = request()->validate([
             'email' => ['email', 'required', 'max:255'],
@@ -70,6 +87,10 @@ class UserController extends Controller
 
     public function destroy()
     {
+        if (! Auth::user())
+        {
+            return redirect('/');
+        }
         Auth::logout();
 
         return redirect('/');
