@@ -15,7 +15,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::with(['author'])->paginate();
+        $posts = Post::with(['author'])->orderBy('updated_at', 'desc')->paginate(5);
 
         return view("posts.index", ['posts' => $posts]);
     }

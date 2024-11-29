@@ -8,9 +8,9 @@
         </div>
 
     @foreach($posts as $post)
-    <div class="px-4 mt-16 ml-20">
-        <div class="container mx-auto py-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+    <div class="px-4 mt-16 ml-20 d-flex">
+        <div class="container mx-auto w-3/4">
+            
                 <div class="bg-white shadow-lg rounded-lg overflow-hidden shadow-xl" style="outline: 2px solid rgb(135, 135, 135);">
                     <div class="p-6">
                         <h2 class="text-xl font-semibold text-gray-800 mb-4">{{ $post->title}}</h2>
@@ -23,8 +23,11 @@
                 </div>
                 
                 
-            </div>
+            
         </div>
+    </div>
+    <div class="mt-20 px-20">
+    {{$posts->links()}}
     </div>
     @endforeach
 <x-bottom></x-bottom>
