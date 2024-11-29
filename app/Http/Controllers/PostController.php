@@ -23,9 +23,10 @@ class PostController extends Controller
     public function show()
     {
 
+        $recent = Post::orderBy('updated_at', 'desc')->take(4)->get();
         $post = Post::with('author')->findOrFail(request('id'));
 
-        return view("posts.show", ['post' => $post]);
+        return view("posts.show", ['post' => $post, 'recents'=>$recent]);
     }
 
     public function create()
@@ -59,7 +60,7 @@ class PostController extends Controller
         $attributes['user_id'] = Auth::user()['id'];
 
         Post::create($attributes);
-        return redirect('/');
+        return redirect('/posts');
     }
 
     public function destroy()

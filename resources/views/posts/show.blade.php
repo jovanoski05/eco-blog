@@ -16,18 +16,11 @@
                     <div class="bg-sky-100 p-4 shadow-xl">
                         <h2 class="text-xl font-bold text-gray-800 mb-4">Recent Posts</h2>
                         <ul class="list-none">
+                            @foreach($recents as $recent)
                             <li class="mb-2">
-                                <a href="#" class="text-gray-700 hover:text-gray-900">Blog Post 1</a>
+                                <a href="/posts/{{$recent->id}}" class="text-gray-700 hover:text-gray-900">{{$recent->title}}</a>
                             </li>
-                            <li class="mb-2">
-                                <a href="#" class="text-gray-700 hover:text-gray-900">Blog Post 2</a>
-                            </li>
-                            <li class="mb-2">
-                                <a href="#" class="text-gray-700 hover:text-gray-900">Blog Post 3</a>
-                            </li>
-                            <li class="mb-2">
-                                <a href="#" class="text-gray-700 hover:text-gray-900">Blog Post 4</a>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                     <div class="bg-sky-100 p-4 mt-4 shadow-xl">
