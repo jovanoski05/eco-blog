@@ -10,13 +10,7 @@
         </div>
         <div class="bg-white py-8">
             <div class="container mx-auto px-4 flex flex-col md:flex-row">
-                <div class="w-full md:w-3/4 px-4">
-                    
-                    <div class="prose max-w-none">
-                        <p>
-                            {{$post->text}}
-                        </p>
-                    </div>
+                <div class="w-full md:w-3/4 px-4 px-10" style="white-space: pre-wrap;">{{$post->text}}
                 </div>
                 <div class="w-full md:w-1/4 px-4">
                     <div class="bg-sky-100 p-4 shadow-xl">
