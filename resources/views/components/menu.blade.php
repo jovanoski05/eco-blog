@@ -8,6 +8,10 @@
                 <a href="/posts" class="nav-link text-gray-700 dark:text-gray-200 dark:hover:text-white transition-colors duration-300">Posts</a>
 
                 @auth
+                    @if (Auth::user()['role']>0)
+                        <a href="/posts/create" class="nav-link text-gray-700 dark:text-gray-200 dark:hover:text-white transition-colors duration-300">Create Post</a>
+                    @endif
+                    
                     <form method="POST" action="/logout">
                         @csrf
                         <button type="submit" class="nav-link text-gray-700 dark:text-gray-200 dark:hover:text-white transition-colors duration-300">Log Out</button>
