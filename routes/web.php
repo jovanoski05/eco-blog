@@ -15,6 +15,7 @@ Route::get('/posts/create', [PostController::class, 'create'])->withoutMiddlewar
 Route::post('/posts/create', [PostController::class, 'store'])->withoutMiddleware('auth');
 
 Route::get("/posts/{id}", [PostController::class, 'show']);
+Route::delete("/posts/{id}", [PostController::class, 'destroy']);
 
 Route::get("/register", [UserController::class, 'register']);
 

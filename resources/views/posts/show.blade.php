@@ -46,5 +46,15 @@
             </div>
     
         </div>
+        @auth
+                @if(Auth::user()['id'] == $post->author->id)
+                    <form method="POST" class="ml-10">
+                        @csrf
+                        @method('delete')
+                        <button type="Submit" class="bg-white text-red-900 font-semibold px-8 py-3 rounded-full hover:bg-red-100 transition duration-300 text-center">Delete</button>
+                    </form>
+                @endif
+
+                @endauth
     </div>
 <x-bottom></x-bottom>

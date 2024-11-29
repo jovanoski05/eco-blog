@@ -61,4 +61,18 @@ class PostController extends Controller
         Post::create($attributes);
         return redirect('/');
     }
+
+    public function destroy()
+    {
+        $post = Post::with('author')->findOrFail(request('id'));
+
+        if (! Auth::check() || Auth::user()['id'] != $post->author->id)
+        {
+            return abort(403);
+        }
+
+        $post->delete();
+
+        return redirect('/posts');
+    }
 }
