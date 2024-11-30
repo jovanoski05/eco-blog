@@ -12,4 +12,9 @@ class UserApi extends Model
         'user_id',
         'API_Key'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
