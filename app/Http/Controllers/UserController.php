@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 
+use App\Models\UserApi;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
@@ -54,6 +55,26 @@ class UserController extends Controller
         Auth::login(Auth::user());
 
         return redirect('/');
+    }
+
+    public function getapi()
+    {
+        if (! Auth::user() || Auth::user()['role']==0)
+        {
+            return redirect('/');
+        }
+
+        $userKey = "We couldn't get your key";
+
+
+        if (! UserApi::where('user_id', '=', Auth::user()->id)->get()->all())
+        {
+            $userKey = password_hash(Auth::user()['email'], PASSWORD_DEFAULT);
+
+            UserApi::create(['user_id' => Auth::user()['id'], 'API_Key' => password_hash($userKey, PASSWORD_DEFAULT)]);
+        }
+
+        return view('user.getapi', ['key' => $userKey]);
     }
 
     public function store()

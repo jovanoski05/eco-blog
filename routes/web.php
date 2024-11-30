@@ -27,6 +27,8 @@ Route::post('/login', [UserController::class, 'create']);
 
 Route::post('/logout', [UserController::class, 'destroy'])->middleware('auth');
 
+Route::get('/getapi', [UserController::class, 'getapi']);
+
 
 #API
 
