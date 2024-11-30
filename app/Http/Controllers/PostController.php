@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\User;
 
+use App\Models\UserApi;
+
 class PostController extends Controller
 {
     //
@@ -61,6 +63,23 @@ class PostController extends Controller
 
         Post::create($attributes);
         return redirect('/posts');
+    }
+
+    public function apistore()
+    {
+        $user_id = User::where('email', '=', request()['auth']['email'])->get()->all();
+
+        if (!$user_id || !password_verify(request()['auth']['APIKey'], UserApi::where('user_id', '=', $user_id[0]['id'])->get()->all()[0]['API_Key']))
+        {
+            return 'Auth Error';
+        }
+
+        $attributes = request()['content'];
+        $attributes['user_id'] = $user_id[0]['id'];
+        Post::create($attributes);
+
+
+        return "Completed";
     }
 
     public function destroy()
