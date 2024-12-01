@@ -6,7 +6,7 @@
     </nav>
 
     <div class="flex justify-center space-x-5">
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.instagram.com/ecovisionmk/" target="_blank" rel="noopener noreferrer">
             <img src="https://img.icons8.com/fluent/30/000000/instagram-new.png" />
         </a>
         <a href="https://x.com/ecovisionmk" target="_blank" rel="noopener noreferrer">

@@ -23,18 +23,7 @@
                             @endforeach
                         </ul>
                     </div>
-                    <div class="bg-sky-100 p-4 mt-4 shadow-xl">
-                        <h2 class="text-xl font-bold text-gray-800 mb-4">Forcast for tomorrow (PM 10)</h2>
-                        <ul class="list-none">
-                            <li class="mb-2">
-                                <a href="#" class="text-gray-700 hover:text-gray-900">00:00 
-                                    <span class="dot" style="height: 5px; width: 5px; background-color: #ff0000; border-radius: 50%; -ms-transform: translateY(-50%); transform: translateY(-50%); display: inline-block;"></span></a>
-                            </li>
-                            <li class="mb-2">
-                                <a href="#" class="text-gray-700 hover:text-gray-900">01:00 <span class="dot" style="height: 5px; width: 5px; background-color: #ff0000; border-radius: 50%; -ms-transform: translateY(-50%); transform: translateY(-50%); display: inline-block;"></span></a>
-                            </li>
-                        </ul>
-                    </div>
+                    
                 </div>
             </div>
     
